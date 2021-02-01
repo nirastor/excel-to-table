@@ -1,18 +1,18 @@
 import {round2digitsToText} from './utils';
 
-export default function CreateTable(props) {
-  if (!props.table) {
+export default function CreateTable(props) {  
+  const table = props.table;
+  const columns = props.columns;
+  
+  if (!table) {
     return false;
   }
-
-  const PRICE_POSITION = 4;
-  
-  const table = props.table;
   
   function getCellsOfRow(row, opt = false) {
     const cells = [];
     row.forEach((cell, index) => {
-      if (!opt && index === PRICE_POSITION) {
+      if ((!opt && index === columns.PRICE_POSITION) ||
+        ((!opt || opt.isFooter) && index === columns.EXPENSES_POSITION)) {
         cell = round2digitsToText(cell);
       }
       

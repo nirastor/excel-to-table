@@ -1,10 +1,8 @@
 import React from 'react';
+
 import FileInput from './FileInput';
 import Tabs from './tabs';
-
 import CreateTable from './CreateTable';
-import Expenses from './Expenses';
-import UniqueMNN from './UniqueMNN';
 
 import getSumm from './getSumm';
 import getUniqueMNN from './getUniqueMNN';
@@ -29,6 +27,13 @@ export default class App extends React.Component {
     };
     this.handleTabChange = this.handleTabChange.bind(this);
     this.setNewTable = this.setNewTable.bind(this);
+    this.columns = {
+      TRADE_NAME_POSITION: 1,
+      REALIZE_FORM_POSITION: 2,
+      VALUE_POSITION: 3,
+      PRICE_POSITION: 4,
+      EXPENSES_POSITION: this.state.table ? this.state.table[0].length - 1 : null
+    }
   }
 
   setNewTable(newTable) {
@@ -41,30 +46,24 @@ export default class App extends React.Component {
   }
 
   getTable() {
-    let table = this.state.table;
-
+    if (!this.state.table) {
+      return false;
+    }
+    
+    let table = this.state.table.map((row) => row.slice());
+    
     if (this.state.tab === "uniqueMNN") {
-      table = getUniqueMNN(table);
+      table = getUniqueMNN(table, this.columns);
     }
 
     if (this.state.tab !== "original") {
-      table = getSumm(table);
+      table = getSumm(table, this.columns);
     }
 
     return table;
   }
 
-  render() {
-    let content;
-    if (this.state.tab === "original") {
-      content = <CreateTable table={this.state.table} />
-    } else if (this.state.tab === "expenses") {
-      content = <Expenses table={this.state.table} />
-    }
-    else if (this.state.tab === "uniqueMNN") {
-      content = <UniqueMNN table={this.state.table} />
-    }
-    
+  render() {    
     return (
       <div>
         <FileInput
@@ -75,10 +74,10 @@ export default class App extends React.Component {
           selectedTab={this.state.tab}
           handleTabChange={this.handleTabChange}
         />
-        <div>Новая версия</div>
-        <CreateTable table={this.getTable()} />
-        <div>Страя версия</div>
-        {content}
+        <CreateTable
+          table={this.getTable()}
+          columns={this.columns}
+        />
       </div>
     );
   }
