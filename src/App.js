@@ -3,6 +3,7 @@ import React from 'react';
 import FileInput from './FileInput';
 import Tabs from './tabs';
 import CreateTable from './CreateTable';
+import Jnvpl from './Jnvpl';
 
 import getSumm from './getSumm';
 import getUniqueMNN from './getUniqueMNN';
@@ -23,6 +24,9 @@ export default class App extends React.Component {
       },
       uniqueMNN: {
         displayName: 'Уникальные МНН',
+      },
+      jnvpl: {
+        displayName: 'ЖНВЛП',
       }
     };
     this.handleTabChange = this.handleTabChange.bind(this);
@@ -63,6 +67,21 @@ export default class App extends React.Component {
     return table;
   }
 
+  getTabContent() {
+    if (this.state.tab === 'jnvpl') {
+      return (
+        <Jnvpl />
+      );
+    }
+
+    return (
+      <CreateTable
+        table={this.getTable()}
+        columns={this.columns}
+      />
+    );
+  }
+
   render() {    
     return (
       <div>
@@ -74,10 +93,7 @@ export default class App extends React.Component {
           selectedTab={this.state.tab}
           handleTabChange={this.handleTabChange}
         />
-        <CreateTable
-          table={this.getTable()}
-          columns={this.columns}
-        />
+        {this.getTabContent()}
       </div>
     );
   }
