@@ -21,6 +21,7 @@ export default function Expenses(originTable, columns) {
   for (let i = 0; i < table[0].length; i += 1) {
     table[table.length - 1][i] = ' ';
   }
+  table[table.length - 1][columns.MNN_POSITION] = 'Итого:'
   table[table.length - 1][columns.VALUE_POSITION] = totalValue;
   table[table.length - 1][columns.EXPENSES_POSITION] = totalExpenses;
 

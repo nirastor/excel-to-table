@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  font-size: 18px;
+  font-family: 'Segoe UI', 'Roboto', 'Tahoma', 'Verdana', sans-serif;
+}
+
+.app-fileinput {
+  font-size: 18px;
+  font-family: 'Segoe UI', 'Roboto', 'Tahoma', 'Verdana', sans-serif;
+  width: 80%;
+  height: 50vh;
+  margin: 20px auto;
+  position: relative;
+}

@@ -17,11 +17,13 @@ export default class Jnvpl extends React.Component {
   render() {
     if (!this.state.table) {
       return (
-        <div>
-          <div>Для отображения ЖНВЛП загрузите файл бвзы данных</div>
+        <div className="jnvlp">
+          <div className="jnvlp-text">Для отображения ЖНВЛП загрузите файл базы данных</div>
+          <div className="jnvlp-fileinput">
           <FileInput
             setNewTable={this.setNewTable}
           />
+          </div>
         </div>
       );
     }

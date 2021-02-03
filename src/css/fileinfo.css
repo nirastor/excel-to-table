@@ -1,0 +1,84 @@
+.fileinfo {
+  position: relative;
+  border-bottom: 1px solid #333333;
+  padding: 6px 20px;
+  margin-bottom: 24px;
+  background-color: #e5e5e5;
+}
+
+.fileinfo-row {
+  display: flex;
+  align-items: baseline;
+  margin: 20px 0;
+}
+
+.fileinfo-filename {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.fileinfo-del {
+  position: relative;
+}
+
+.fileinfo-del-icon {
+  cursor: pointer;
+  color: rgb(180, 28, 28);
+  transition: color .3s ease;
+}
+
+
+.fileinfo-del-icon:hover {
+  color: rgb(255, 0, 0);
+}
+
+.fileinfo-del-tooltip {
+  display: none;
+  position: absolute;
+  color: #888888;
+  background-color: #ffffff;
+  padding: 3px 9px;
+  border: 1px solid #888888;
+  border-radius: 3px;
+  z-index: 999;
+}
+
+.fileinfo-del-icon:hover ~ .fileinfo-del-tooltip {
+  display: block;
+  top: 100%;
+  left: 50%;
+  width: intrinsic;
+  width: -moz-max-content;
+  width: -webkit-max-content;
+}
+
+.fileinfo-toggle {
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  color: #333333;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+.fileinfo-toggle:hover {
+  background-color: white;
+}
+
+.fileinfo-arrow {
+  position: absolute;
+  display: block;
+  top: 50%;
+  width: 50%;
+  transform: translate(50%, -50%);
+}
+
+.fileinfo-arrow.is-closed {
+  transform: translate(50%, -50%) rotate(180deg);
+}

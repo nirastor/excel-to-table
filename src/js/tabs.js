@@ -13,7 +13,7 @@ export default function createTabs(props) {
   }
   
   return (
-    <ul>
+    <ul className="tabs">
       {tabs}
     </ul>
   );

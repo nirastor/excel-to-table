@@ -1,0 +1,13 @@
+.jnvlp {
+  padding: 10px 20px;
+}
+
+.jnvlp-text {
+  margin-bottom: 10px;
+}
+
+.jnvlp-fileinput {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}

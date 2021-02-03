@@ -8,7 +8,13 @@ export default class FileInput extends React.Component {
     super();
     this.readFile = this.readFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setNewTable = props.setNewTable;
+    this.handleInput = this.handleInput.bind(this);
+    this.setNewFile = props.setNewFile;
+  }
+
+  handleInput(e) {
+    const file = e.target.files[0];
+    this.readFile(file); 
   }
   
   handleSubmit(e) {
@@ -27,7 +33,6 @@ export default class FileInput extends React.Component {
     reader.readAsArrayBuffer(file);
 
     const extension = this.getFileExtension(file);
-    console.log(extension);
 
     if (extension === 'xlsx') {
       reader.onload = () => {
@@ -35,7 +40,7 @@ export default class FileInput extends React.Component {
         const workbook = XLSX.read(data, {type: 'array'});
         const firstSheetName = workbook.Workbook.Sheets[0].name
         const firstSheet = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheetName], {header:1})
-        this.setNewTable(firstSheet);
+        this.setNewFile(firstSheet, file.name);
       };
     }
 
@@ -61,9 +66,13 @@ export default class FileInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="file"></input>
-        <button type="submit">Go!</button>
+      <form className="inputfile" onSubmit={this.handleSubmit}>
+        <div className="inputfile-input-container">
+          <input className="inputfile-input-input" type="file" onInput={this.handleInput}></input>
+          <div className="inputfile-input-cover">
+            Нажмите, чтобы добавить файл.<br />
+            Или перетащите с компьютера</div>
+        </div>
       </form>
     );
   }
